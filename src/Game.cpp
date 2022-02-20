@@ -10,8 +10,11 @@ Game::Game(const size_t &gameNum) : wordleNumber(gameNum) { fetchAnswer(); }
 std::string Game::getAnswer() const { return wordleAnswer; }
 
 std::string Game::firstGuess() const {
+  // initiate Guess object and find max pair
   Guess firstGuess;
   std::pair<std::string, double> guessWord = firstGuess.findMaxWord();
+
+  // compact pair to proper format for output
   std::ostringstream out;
   out << guessWord.first << " (" << guessWord.second << ")";
   return out.str();
@@ -45,10 +48,11 @@ void Game::fetchAnswer() {
 
 std::string Game::makeGuess(const std::string &guess,
                             const std::string &result) const {
+  // initiate object and find best match
   Guess newGuess(guess, result);
-
   std::pair<std::string, double> nextGuess = newGuess.nextGuess();
 
+  // compact pair into proper string format and output
   std::ostringstream out;
   out << nextGuess.first << " (" << nextGuess.second << ")";
   return out.str();

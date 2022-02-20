@@ -1,7 +1,7 @@
 # Wordle Solver
 The aim of this project is to create a working Worldle solver that most accurately predicts the next best words to guess on the popular game.
 
-Reading into the Javascript of the website, there is a list of allowed words that can be guessed (i.e. the game's dictionary), and a smaller list of words that contains all the possible words that could appear as the word of the day.  Both of these are placed under the [textfiles](https://github.com/thecae/wordle/textfiles) folder of the project.
+Reading into the Javascript of the website, there is a list of allowed words that can be guessed (i.e. the game's dictionary), and a smaller list of words that contains all the possible words that could appear as the word of the day.  Both of these are placed under the [textfiles](https://github.com/thecae/wordle/tree/main/textfiles) folder of the project.
 
 ### How it Works
 The program contains a list of all the possible words that can be used to make a guess.  The program then assesses each word's likelihood of being used based on its expected frequency; that is, by considering all possibilities of the outcome of entering the word at the current stage, we can assign it an "expected value" based on what might be the result of this word.
