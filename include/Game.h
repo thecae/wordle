@@ -35,7 +35,7 @@ public:
    *           the answer to the puzzle as a string.
    *  @return  The answer for the Wordle
    */
-  std::string getAnswer() const;
+  std::string getAnswer() const noexcept;
 
   /**
    * @brief   Determines the best first guess

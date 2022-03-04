@@ -7,7 +7,7 @@
 
 Game::Game(const size_t &gameNum) : wordleNumber(gameNum) { fetchAnswer(); }
 
-std::string Game::getAnswer() const { return wordleAnswer; }
+std::string Game::getAnswer() const noexcept { return wordleAnswer; }
 
 std::string Game::firstGuess() const {
   // initiate Guess object and find max pair

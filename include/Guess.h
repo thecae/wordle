@@ -89,7 +89,7 @@ private:
    *          which entry has the highest expected value.
    * @return  The max entry in the list
    */
-  std::pair<std::string, double> findMaxWord() const;
+  std::pair<std::string, double> findMaxWord() const noexcept;
 };
 
 #endif /* WORDLE_GUESS_H */

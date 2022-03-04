@@ -20,20 +20,21 @@ std::pair<std::string, double> Guess::nextGuess() {
 }
 
 void Guess::removeInvalidWords() {
-  auto it = wordList.begin();
-  while (it != wordList.end()) {
+    std::map<std::string,double> tempMap(wordList);
+  auto it = tempMap.begin();
+  while (it != tempMap.end()) {
     bool wasRemoved = false;
     for (size_t i = 0; i < 5; ++i) {
       // remove if identical
       if (guess == it->first) {
-        wordList.erase(it++);
+        tempMap.erase(it++);
         wasRemoved = true;
         break;
       }
 
       // remove if it contains black letter
       if (result[i] == 'B' && it->first.find(guess[i]) != std::string::npos) {
-        wordList.erase(it++);
+        tempMap.erase(it++);
         wasRemoved = true;
         break;
       }
@@ -42,13 +43,13 @@ void Guess::removeInvalidWords() {
       // or contains yellow letter in same position
       if (result[i] == 'Y' && (it->first.find(guess[i]) == std::string::npos ||
                                it->first[i] == guess[i])) {
-        wordList.erase(it++);
+        tempMap.erase(it++);
         wasRemoved = true;
         break;
       }
       // remove if does not contain green letter in correct position
       if (result[i] == 'G' && it->first[i] != guess[i]) {
-        wordList.erase(it++);
+        tempMap.erase(it++);
         wasRemoved = true;
         break;
       }
@@ -57,6 +58,7 @@ void Guess::removeInvalidWords() {
       ++it;
     }
   }
+  wordList = tempMap;
 }
 
 void Guess::initiateList() {
@@ -152,7 +154,7 @@ double Guess::initiateExpectedValue(const std::string &word) const {
   return expectedValue;
 }
 
-std::pair<std::string, double> Guess::findMaxWord() const {
+std::pair<std::string, double> Guess::findMaxWord() const noexcept {
   // pair object for the biggest entry
   std::pair<std::string, double> maxEntry = *(wordList.begin());
 
